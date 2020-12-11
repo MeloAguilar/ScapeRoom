@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Casa>
+	<Entrada>
+		<Salon>
+			Entras al salón y ves tres cuadros, te acercas y ves tres cuadros, en uno pone.
+			<br>
+           (1995), en el del centro (+17590), en el tercero (-10000).
+           <AcertijoCuadros>
+           		Hay una caja fuerte tras el cuadro central.
+           		<br>
+              	Parece que es un código numérico.
+           </AcertijoCuadros>
+		</Salon>
+		<Garaje>
+			<Taquillas>
+				Hay escrito un mensaje:
+				<br>
+					"Aquí reside el siervo del diablo"
+				<br>
+					¿Qué taquilla quieres abrir?
+				<br>
+					[izq]   [der]
+			</Taquillas>
+			<Coche>
+				
+			</Coche>
+		</Garaje>
+		<Escaleras>
+			<Descansillo>
+
+			</Descansillo>
+		</Escaleras>
+	</Entrada>
+</Casa>
+</xml>
