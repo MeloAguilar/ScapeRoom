@@ -1,35 +1,44 @@
 import java.util.Scanner;
 
 public class Salon {
-    public static void lugaresSalon() {
-        Scanner sc = new Scanner(System.in);
-        String eleccionesSalon;
-        System.out.println(entradaSalon());
-        System.out.println("¿Donde quieres acercarte?");
-        System.out.println("[cuadros] [mesa] [dibujos]");
-        eleccionesSalon = sc.nextLine();
+//Aquí tenemos la llamada a los lugares del salon
+//Primero se llama a entradaSalon.
+//Mediante
+public static void lugaresSalon() {
+    Scanner sc = new Scanner(System.in);
+    String eleccionesSalon;
+    System.out.println("¿Donde quieres acercarte?");
+    System.out.println("[cuadros] [mesa] [dibujos]");
+    eleccionesSalon = sc.nextLine();
+    if (eleccionesSalon.equals("cuadros") || eleccionesSalon.equals("mesa") || eleccionesSalon.equals("dibujos")) {
+//Si la eleccion es salir volverá a la entrada
 
-        while (eleccionesSalon != "salir") {
-            switch (eleccionesSalon) {
-                case "cuadros":
-                    Salon.salonCuadros();
-                    Salon.cajaFuerte();
-                    break;
-                case "mesa":
-                    Salon.salonMesa();
-                    eleccionesSalon = sc.nextLine();
-                    break;
-                case "dibujos":
-                    Salon.salonDibujos();
-                    Salon.lugaresSalon();
-                    eleccionesSalon = sc.nextLine();
-                    break;
-            }
+        switch (eleccionesSalon) {
+            case "cuadros":
+                Salon.salonCuadros();
+                Salon.cajaFuerte();
+                break;
+            case "mesa":
+                Salon.salonMesa();
+                lugaresSalon();
+                break;
+            case "dibujos":
+                Salon.salonDibujos();
+                Salon.lugaresSalon();
+                break;
         }
-        return;
+    }else if(eleccionesSalon.equals("salir")){
+        System.out.println("[salon]  [garaje]  [escaleras]");
+            EleccinesPlantaBaja.switchInicial();
 
+    } else {
+        lugaresSalon();
     }
+    return;
 
+}
+
+    //Aquí se llama al inicio del salon.
     public static String entradaSalon() {
         return "Abres ambas puertas y crees poder " +
                 "ver el polvo revolotear por el aire,\n " +
@@ -42,8 +51,8 @@ public class Salon {
                 "la mesa y el sofá, están todos arrugados.";
     }
 
+    //Aquí se llama al metodo de la mesa
     public static void salonMesa() {
-
         System.out.println("Das unos pasos y te agachas junto a la mesa,\n " +
                 "estirando los papeles para intentar leer algo...\n" +
                 "\n" +
@@ -51,26 +60,28 @@ public class Salon {
                 "pero en todas aparecen tachones y frases como “Bienvenido al infierno”. \n" +
                 "Un escalofrío te recorre mientras lo lees y te levantas con rapidez. \n" +
                 "Antes de alejarte, ves un post-it pegado a la mesa, en el que pone “+17590”");
+        salonElecciones();
+        return;
+    }
+
+    public static void salonElecciones() {
         System.out.println("¿Donde quieres acercarte?");
         System.out.println("[cuadros] [mesa] [dibujos]");
         return;
     }
 
     public static void salonDibujos() {
-
         System.out.println("Te acercas a los dibujos que hay colgados en el corcho. \n" +
                 "Puedes ver animales y arcoíris dibujados de forma infantil, \n" +
                 "sin embargo, hay un dibujo que te llama la atención: \n" +
                 "Uno de un niño que va de la mano de un borrón negro con ojos, \n" +
                 "además se puede ver escrito J + A. En el borde del corcho \n" +
                 "se encuentra algo grabado: -10000");
-        System.out.println("¿Donde quieres acercarte?");
-        System.out.println("[cuadros] [mesa] [dibujos]");
+        salonElecciones();
         return;
     }
 
     public static void salonCuadros() {
-
         System.out.println("Al acercarte, puedes ver que son unas fotos de cinco niños. " +
                 "Están llenos de polvo, tanto que casi no se pueden visualizar bien los rostros infantiles.\n " +
                 "Además, el cuadro del centro parece a punto de caerse. \n" +
@@ -82,8 +93,9 @@ public class Salon {
                 "¿Por qué me suena este chico?...");
         System.out.println("¿Debería sonarme?");
         System.out.println("Detrás de la foto puedes ver una fecha escrita: 1995");
-        System.out.println("¿Quieres probar o prefieres segui buscando?");
-        System.out.println("[probar]  [pasar]");
+        cajaFuerte();
+        salonElecciones();
+        EleccinesPlantaBaja.inventario();
         return;
 
     }
@@ -93,6 +105,7 @@ public class Salon {
         String eleccionCajaFuerte;
         boolean linterna;
         int pilasLinterna = 10;
+        EleccinesPlantaBaja.inventario();
         eleccionCajaFuerte = sc.nextLine();
         switch (eleccionCajaFuerte) {
             case "probar":
@@ -106,23 +119,25 @@ public class Salon {
                 //La linterna e el método de este juego para contabilizar las acciones
                 //Sin la linterna el jugador no puede sobrevivir mas de 3 acciones
 
-                    System.out.println("Pones el código en la caja fuerte y " +
-                            "se escucha un chasquido que indica que está abierta, \n" +
-                            "Abres despacio la puerta para asegurarte de que no " +
-                            "se levante más polvo del que ya hay en la habitación\n" +
-                            "Metes la mano y sacas una linterna, suspirando agradecido. Ves un bulto al fondo\n" +
-                            "Intentas alcanzarlo y cuando lo sacas puedes ver que es una especie de muñeca hecha con ramas. " +
-                            "...como si fuera para algún tipo de ritual...");
-                    System.out.println("La puerta de la caja fuerte tiene el número 7 grabado en su interior");
-                    System.out.println("Inexplicable... La muñeca se resbala de tus manos y cae al suelo\n" +
-                            "a la vez que escuchas un estruendoso golpe que parece venir de arriba.");
-                    System.out.println("(Tú)Ni siquiera sé si debería subir, pero algo me llama a hacerlo");
-                    linterna = true;
-                    pilasLinterna--;
+                System.out.println("Pones el código en la caja fuerte y " +
+                        "se escucha un chasquido que indica que está abierta, \n" +
+                        "Abres despacio la puerta para asegurarte de que no " +
+                        "se levante más polvo del que ya hay en la habitación\n" +
+                        "Metes la mano y sacas una linterna, suspirando agradecido. Ves un bulto al fondo\n" +
+                        "Intentas alcanzarlo y cuando lo sacas puedes ver que es una especie de muñeca hecha con ramas. " +
+                        "...como si fuera para algún tipo de ritual...");
+                System.out.println("La puerta de la caja fuerte tiene el número 7 grabado en su interior");
+                System.out.println("Inexplicable... La muñeca se resbala de tus manos y cae al suelo\n" +
+                        "a la vez que escuchas un estruendoso golpe que parece venir de arriba.");
+                System.out.println("(Tú)Ni siquiera sé si debería subir, pero algo me llama a hacerlo");
+                linterna = true;
+                pilasLinterna--;
 
                 break;
             case "pasar":
                 System.out.println("Es mejor que siga buscando");
+                salonElecciones();
+                entradaSalon();
                 break;
         }
     }
